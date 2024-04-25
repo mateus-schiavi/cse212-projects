@@ -77,3 +77,21 @@ public static class Algorithms {
         return count;
     }
 }
+
+// Algorithm1:
+// This algorithm has a single loop that iterates size times.
+// The time complexity of this algorithm is O(n), where n is the input size.
+// Algorithm2:
+// This algorithm has nested loops, both iterating size times.
+// As a result, it performs size * size iterations.
+// The time complexity of this algorithm is O(n^2), where n is the input size.
+// Algorithm3:
+// This algorithm uses a binary search-like approach.
+// It halves the search space in each iteration until convergence.
+// The number of iterations required for convergence is proportional to the logarithm of the input size.
+// The time complexity of this algorithm is O(log n), where n is the input size.
+// So, summarizing:
+
+// Algorithm1: O(n)
+// Algorithm2: O(n^2)
+// Algorithm3: O(log n)
