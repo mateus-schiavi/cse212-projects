@@ -1,8 +1,10 @@
-public static class ArraysTester {
+public static class ArraysTester
+{
     /// <summary>
     /// Entry point for the tests
     /// </summary>
-    public static void Run() {
+    public static void Run()
+    {
         // Sample Test Cases (may not be comprehensive)
         Console.WriteLine("\n=========== PROBLEM 1 TESTS ===========");
         double[] multiples = MultiplesOf(7, 5);
@@ -39,9 +41,18 @@ public static class ArraysTester {
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
 
-        return new double[0]; // replace this return statement with your own
+        //Create an array to store the multiples
+        double[] multiples = new double[length];
+        //Initialize a loop to iterate 'length' times
+        for (int i = 0; i < length; i++)
+        {
+            //Calculate the multiple of the number and add it to the array
+            multiples[i] = number * (i + 1);
+        }
+        //Return the array containing the multiples
+        return multiples; // replace this return statement with your own
     }
-    
+
     /// <summary>
     /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
     /// <c>&lt;List&gt;{1, 2, 3, 4, 5, 6, 7, 8, 9}</c> and an amount is 3 then the list returned should be 
@@ -52,6 +63,37 @@ public static class ArraysTester {
     /// </summary>
     private static void RotateListRight(List<int> data, int amount)
     {
+        //Handle edge cases: If amount is less than or equal to 0 or greater than data.Count, no rotation is needed
+        if (amount <= 0 || amount >= data.Count)
+        {
+            return;
+        }
+
+        //Calculate the actual number of rotations needed
+        int rotations = amount % data.Count;
+
+        //Create a temporary list to store the elements that will be moved
+        List<int> temp = new List<int>(rotations);
+
+        //Move elements to the temporary list
+        for (int i = data.Count - rotations; i < data.Count; i++)
+        { 
+            temp.Add(data[i]);
+        }
+
+        //Shift elements to the right in the original list
+        for (int i = data.Count - 1; i >= rotations; i--)
+        {
+            data[i] = data[i - rotations];
+        }
+
+        //Move elements from temporary list to the beginning of the original list
+        for (int i = 0; i < rotations; i++)
+        {
+            data[i] = temp[i];
+        }
+
+
         // TODO Problem 2 Start
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
