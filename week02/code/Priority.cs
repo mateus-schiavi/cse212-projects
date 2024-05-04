@@ -3,14 +3,14 @@
         // TODO Problem 2 - Write and run test cases and fix the code to match requirements
         // Example of creating and using the priority queue
         var priorityQueue = new PriorityQueue();
-        Console.WriteLine(priorityQueue);
+        Console.WriteLine("Initial Queue" + priorityQueue);
 
         // Test Cases
 
         // Test 1
         // Scenario: Enqueue five names of famous scientists and dequeue: Nikola Tesla (1), Charles Darwin (2), Isaac Newton (3), Marie Curie (4), Albert Einstein (5)
         // Expected Result: Run the code and the dequeue should return the name sequence according to the priority
-        Console.WriteLine("Test 1");
+        Console.WriteLine("\nTest 1");
         priorityQueue.Enqueue("Albert Einstein", 5); //High priority
         priorityQueue.Enqueue("Marie Curie", 4);
         priorityQueue.Enqueue("Isaac Newton", 3);
@@ -31,7 +31,7 @@
         // Expected Result: Run the code and the dequeue should return the name sequence according to the priority
         var priorityQueue2 = new PriorityQueue();
         Console.WriteLine(priorityQueue);
-        Console.WriteLine("Test 2");
+        Console.WriteLine("\nTest 2");
 
         priorityQueue.Enqueue("Débora Seabra", 5); //High priority
         priorityQueue.Enqueue("Anisio Teixeira", 4);
