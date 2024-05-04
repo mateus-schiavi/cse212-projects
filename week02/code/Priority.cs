@@ -3,7 +3,7 @@
         // TODO Problem 2 - Write and run test cases and fix the code to match requirements
         // Example of creating and using the priority queue
         var priorityQueue = new PriorityQueue();
-        Console.WriteLine("Initial Queue" + priorityQueue);
+        Console.WriteLine(priorityQueue);
 
         // Test Cases
 
@@ -16,7 +16,7 @@
         priorityQueue.Enqueue("Isaac Newton", 3);
         priorityQueue.Enqueue("Charles Darwin", 2);
         priorityQueue.Enqueue("Nikola Tesla", 1); //Low priority
-
+        Console.WriteLine(priorityQueue);
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Albert Einstein"
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Marie Curie"
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Isaac Newton"
@@ -29,8 +29,6 @@
         // Test 2
         // Scenario: Enqueue five names of famous brazilian teachers: Paulo Coelho (1), Pasquale Cipro Neto (2), Darcy Ribeiro (3), Anisio Teixeira (4), Débora Seabra (5)
         // Expected Result: Run the code and the dequeue should return the name sequence according to the priority
-        var priorityQueue2 = new PriorityQueue();
-        Console.WriteLine(priorityQueue);
         Console.WriteLine("\nTest 2");
 
         priorityQueue.Enqueue("Débora Seabra", 5); //High priority
@@ -38,7 +36,7 @@
         priorityQueue.Enqueue("Darcy Ribeiro", 3);
         priorityQueue.Enqueue("Pasquale Cipro Neto", 2);
         priorityQueue.Enqueue("Paulo Coelho", 1); //Low priority
-
+        Console.WriteLine(priorityQueue);
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Débora Seabra"
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Anisio Teixeira"
         Console.WriteLine(priorityQueue.Dequeue()); // Should print "Darcy Ribeiro"
