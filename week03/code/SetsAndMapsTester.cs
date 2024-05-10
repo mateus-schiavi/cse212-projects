@@ -149,23 +149,27 @@ public static class SetsAndMapsTester
 
         foreach (var line in File.ReadLines(filename))
         {
-            var fields = line.Split(',');
-            if (fields.Length > 4)
+            var fields = line.Split(",");
+
+            if (fields.Length >= 4)
             {
-                var degree = fields[4].Trim();
-                if (!degrees.ContainsKey(degree))
+                string degree = fields[3].Trim();
+
+                if (degrees.ContainsKey(degree))
                 {
-                    degrees[degree] = 1;
+                    degrees[degree] += Int32.Parse(fields[4]);
                 }
                 else
                 {
-                    degrees[degree]++;
+                    degrees[degree] = Int32.Parse(fields[4]);
                 }
             }
         }
 
         return degrees;
     }
+
+
 
 
     /// <summary>
@@ -190,7 +194,53 @@ public static class SetsAndMapsTester
     private static bool IsAnagram(string word1, string word2)
     {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        return false;
+        string cleanWord1 = word1.Replace(" ", " ").ToLower();
+        string cleanWord2 = word2.Replace(" ", " ").ToLower();
+
+        if (cleanWord1.Length != cleanWord2.Length)
+        {
+            return false;
+        }
+
+        var charFrequency1 = new Dictionary<char, int>();
+        var charFrequency2 = new Dictionary<char, int>();
+
+        foreach (char c in cleanWord1)
+        {
+            if (charFrequency1.ContainsKey(c))
+            {
+                charFrequency1[c]++;
+            }
+            else
+            {
+                charFrequency1[c] = 1;
+            }
+        }
+
+        foreach (char c in cleanWord2)
+        {
+            if (charFrequency2.ContainsKey(c))
+            {
+                charFrequency2[c]++;
+            }
+            else
+            {
+                charFrequency2[c] = 1;
+            }
+        }
+
+        foreach (var kvp in charFrequency1)
+        {
+            char key = kvp.Key;
+            int value = kvp.Value;
+
+            if (!charFrequency2.ContainsKey(key) || charFrequency2[key] != value)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -269,5 +319,17 @@ public static class SetsAndMapsTester
         // 1. Add code in FeatureCollection.cs to describe the JSON using classes and properties 
         // on those classes so that the call to Deserialize above works properly.
         // 2. Add code below to print out each place a earthquake has happened today and its magitude.
+
+        if (featureCollection != null && featureCollection.features != null)
+        {
+            foreach (var feature in featureCollection.features)
+            {
+                Console.WriteLine($"{feature.properties.place} - Mag {feature.properties.mag}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No earthquake data available.");
+        }
     }
 }
