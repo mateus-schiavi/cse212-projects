@@ -146,15 +146,27 @@ public static class SetsAndMapsTester
     private static Dictionary<string, int> SummarizeDegrees(string filename)
     {
         var degrees = new Dictionary<string, int>();
+
         foreach (var line in File.ReadLines(filename))
         {
-            var fields = line.Split(",");
-            // Todo Problem 2 - ADD YOUR CODE HERE
-
+            var fields = line.Split(',');
+            if (fields.Length > 4)
+            {
+                var degree = fields[4].Trim();
+                if (!degrees.ContainsKey(degree))
+                {
+                    degrees[degree] = 1;
+                }
+                else
+                {
+                    degrees[degree]++;
+                }
+            }
         }
 
         return degrees;
     }
+
 
     /// <summary>
     /// Determine if 'word1' and 'word2' are anagrams.  An anagram
