@@ -1,5 +1,5 @@
 using System.Text.Json;
-using System.IO;
+
 public static class SetsAndMapsTester
 {
     public static void Run()
@@ -151,19 +151,6 @@ public static class SetsAndMapsTester
             var fields = line.Split(",");
             // Todo Problem 2 - ADD YOUR CODE HERE
 
-            if (fields.Length >= 4)
-            {
-                var degree = fields[3].Trim();
-
-                if (degrees.ContainsKey(degree))
-                {
-                    degrees[degree]++;
-                }
-                else
-                {
-                    degrees[degree] = 1;
-                }
-            }
         }
 
         return degrees;
