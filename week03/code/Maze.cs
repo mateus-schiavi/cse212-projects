@@ -1,10 +1,10 @@
 public class Maze
 {
-    private readonly Dictionary<ValueTuple<int, int>, bool[]> _mazeMap;
+    private readonly Dictionary<(int, int), bool[]> _mazeMap;
     private int _currX = 1;
     private int _currY = 1;
 
-    public Maze(Dictionary<ValueTuple<int, int>, bool[]> mazeMap)
+    public Maze(Dictionary<(int, int), bool[]> mazeMap)
     {
         _mazeMap = mazeMap;
     }
@@ -15,7 +15,7 @@ public class Maze
     /// </summary>
     public void MoveLeft()
     {
-        if (_mazeMap.TryGetValue((_currX, _currY - 1), out var movements) && movements[0])
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements) && movements[0])
         {
             _currY--;
             Console.WriteLine($"Moved left. Current location (x={_currX}, y={_currY})");
@@ -32,7 +32,7 @@ public class Maze
     /// </summary>
     public void MoveRight()
     {
-        if (_mazeMap.TryGetValue((_currX, _currY + 1), out var movements) && movements[1])
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements) && movements[1])
         {
             _currY++;
             Console.WriteLine($"Moved right. Current location (x={_currX}, y={_currY})");
@@ -49,7 +49,7 @@ public class Maze
     /// </summary>
     public void MoveUp()
     {
-        if (_mazeMap.TryGetValue((_currX - 1, _currY), out var movements) && movements[2])
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements) && movements[2])
         {
             _currX--;
             Console.WriteLine($"Moved up. Current location (x={_currX}, y={_currY})");
@@ -66,7 +66,7 @@ public class Maze
     /// </summary>
     public void MoveDown()
     {
-        if (_mazeMap.TryGetValue((_currX + 1, _currY), out var movements) && movements[3])
+        if (_mazeMap.TryGetValue((_currX, _currY), out var movements) && movements[3])
         {
             _currX++;
             Console.WriteLine($"Moved down. Current location (x={_currX}, y={_currY})");

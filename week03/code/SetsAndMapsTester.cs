@@ -123,7 +123,7 @@ public static class SetsAndMapsTester
 
             if (seen.Contains(reverse))
             {
-                Console.WriteLine($"{word} & {reverse}");
+                Console.WriteLine($"{reverse} & {word}");
             }
             seen.Add(word);
         }
@@ -157,11 +157,11 @@ public static class SetsAndMapsTester
 
                 if (degrees.ContainsKey(degree))
                 {
-                    degrees[degree] += Int32.Parse(fields[4]);
+                    degrees[degree] ++;
                 }
                 else
                 {
-                    degrees[degree] = Int32.Parse(fields[4]);
+                    degrees[degree] = 1;
                 }
             }
         }
@@ -194,53 +194,46 @@ public static class SetsAndMapsTester
     private static bool IsAnagram(string word1, string word2)
     {
         // Todo Problem 3 - ADD YOUR CODE HERE
-        string cleanWord1 = word1.Replace(" ", " ").ToLower();
-        string cleanWord2 = word2.Replace(" ", " ").ToLower();
+        string cleanWord1 = new string(word1.Where(c => !char.IsWhiteSpace(c)).ToArray()).ToLower();
+        string cleanWord2 = new string(word2.Where(c => !char.IsWhiteSpace(c)).ToArray()).ToLower();
 
         if (cleanWord1.Length != cleanWord2.Length)
         {
             return false;
         }
 
-        var charFrequency1 = new Dictionary<char, int>();
-        var charFrequency2 = new Dictionary<char, int>();
+        var charFrequency = new Dictionary<char, int>();
+        
 
         foreach (char c in cleanWord1)
         {
-            if (charFrequency1.ContainsKey(c))
+            if (charFrequency.ContainsKey(c))
             {
-                charFrequency1[c]++;
+                charFrequency[c]++;
             }
             else
             {
-                charFrequency1[c] = 1;
+                charFrequency[c] = 1;
             }
         }
 
         foreach (char c in cleanWord2)
         {
-            if (charFrequency2.ContainsKey(c))
+            if (charFrequency.ContainsKey(c))
             {
-                charFrequency2[c]++;
+                charFrequency[c]--;
+                if (charFrequency[c] == 0)
+                {
+                    charFrequency.Remove(c);
+                }
             }
             else
-            {
-                charFrequency2[c] = 1;
-            }
-        }
-
-        foreach (var kvp in charFrequency1)
-        {
-            char key = kvp.Key;
-            int value = kvp.Value;
-
-            if (!charFrequency2.ContainsKey(key) || charFrequency2[key] != value)
             {
                 return false;
             }
         }
 
-        return true;
+        return charFrequency.Count == 0;
     }
 
     /// <summary>
