@@ -263,7 +263,7 @@ public static class RecursionTester
         //Solve using recursion
         decimal ways = CountWaysToClimb(s - 1, remember) + CountWaysToClimb(s - 2, remember) + CountWaysToClimb(s - 3, remember);
 
-            remember[s] = ways;
+        remember[s] = ways;
         return ways;
     }
 
@@ -285,7 +285,7 @@ public static class RecursionTester
         BinaryCardHelper(pattern, "");
     }
 
-    private static void BinaryCardHelper(string pattern, string current) 
+    private static void BinaryCardHelper(string pattern, string current)
     {
         //Base case: If the pattern is empty, then will print the current binary string
         if (pattern.Length == 0)
@@ -295,15 +295,15 @@ public static class RecursionTester
         }
 
         //If the first character of the pattern is '*', then we have two choices: replace '*' with '0' or '1'
-         if (pattern[0] == '*')
-         {
+        if (pattern[0] == '*')
+        {
             BinaryCardHelper(pattern.Substring(1), current + "0");
             BinaryCardHelper(pattern.Substring(1), current + "1");
-         }
-         else
-         {
+        }
+        else
+        {
             BinaryCardHelper(pattern.Substring(1), current + pattern[0]);
-         }
+        }
     }
 
     /// <summary>
@@ -314,10 +314,8 @@ public static class RecursionTester
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
-        if (currPath == null)
-            currPath = new List<ValueTuple<int, int>>();
-
-        currPath.Add((x,y)); // Use this syntax to add to the current path
+        currPath ??= new List<ValueTuple<int, int>>();
+        currPath.Add((x, y)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
         // ADD CODE HERE
@@ -328,12 +326,17 @@ public static class RecursionTester
             return;
         }
 
+        if (!maze.IsValidMove(currPath, x, y))
+        {
+            return;
+        }
+
         maze.Data[y * maze.Width + x] = 0;
 
-        ExploreMove(maze, currPath, x + 1, y);
-        ExploreMove(maze, currPath, x - 1, y);
-        ExploreMove(maze, currPath, x, 1 + y);
-        ExploreMove(maze, currPath, x, y - 1);
+        SolveMaze(maze, x + 1, y, currPath);
+        SolveMaze(maze, x - 1, y, currPath);
+        SolveMaze(maze, x, 1 + y, currPath);
+        SolveMaze(maze, x, y - 1, currPath);
 
         maze.Data[y * maze.Width + x] = 1;
 
@@ -342,7 +345,7 @@ public static class RecursionTester
 
     public static void ExploreMove(Maze maze, List<ValueTuple<int, int>> currPath, int newX, int newY)
     {
-        if (newX >= 0 && newX < maze.Width && newY >=0 && newY < maze.Height
+        if (newX >= 0 && newX < maze.Width && newY >= 0 && newY < maze.Height
             && maze.Data[newY * maze.Width + newX] == 1)
         {
             List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
@@ -352,7 +355,7 @@ public static class RecursionTester
 
     private static void PrintPath(List<ValueTuple<int, int>> path)
     {
-        Console.Write("Path: ");       
+        Console.Write("Path: ");
         foreach (var point in path)
         {
             Console.WriteLine($"({point.Item1}, {point.Item2}) ");
