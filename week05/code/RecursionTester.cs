@@ -337,7 +337,7 @@ public static class RecursionTester
 
         maze.Data[y * maze.Width + x] = 1;
 
-        // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
     }
 
     private static void PrintPath(List<ValueTuple<int, int>> path)
