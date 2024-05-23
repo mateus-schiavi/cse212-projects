@@ -282,9 +282,29 @@ public static class RecursionTester
     /// </summary>
     public static void WildcardBinary(string pattern)
     {
-        // TODO Start Problem 4
+        BinaryCardHelper(pattern, "");
     }
 
+    private static void BinaryCardHelper(string pattern, string current) 
+    {
+        //Base case: If the pattern is empty, then will print the current binary string
+        if (pattern.Length == 0)
+        {
+            Console.WriteLine(current);
+            return;
+        }
+
+        //If the first character of the pattern is '*', then we have two choices: replace '*' with '0' or '1'
+         if (pattern[0] == '*')
+         {
+            BinaryCardHelper(pattern.Substring(1), current + "0");
+            BinaryCardHelper(pattern.Substring(1), current + "1");
+         }
+         else
+         {
+            BinaryCardHelper(pattern.Substring(1), current + pattern[0]);
+         }
+    }
     /// <summary>
     /// Use recursion to Print all paths that start at (0,0) and end at the
     /// 'end' square.
