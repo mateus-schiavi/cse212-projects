@@ -250,16 +250,16 @@ public static class RecursionTester {
         if (s == 3)
             return 4;
 
-        if(remember == null)
-        remember = new Dictionary<int, decimal>();
+        // if(remember == null)
+        // remember = new Dictionary<int, decimal>();
 
-        if(remember.ContainsKey(s))
-        return remember[s];
+        // if(remember.ContainsKey(s))
+        // return remember[s];
 
         // Solve using recursion
         decimal ways = CountWaysToClimb(s - 1) + CountWaysToClimb(s - 2) + CountWaysToClimb(s - 3);
 
-        remember[s] = ways;
+        //remember[s] = ways;
         return ways;
     }
 
