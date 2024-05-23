@@ -147,12 +147,14 @@ public static class RecursionTester {
     /// </summary>
     public static int SumSquaresRecursive(int n) {
         // TODO Start Problem 1
-        // if (n <= 0)
-        // {
-        //     return 0;
-        // }
-        //     return n*n + SumSquaresRecursive(n - 1);
-        return 0;
+        if (n <= 0)
+        {
+            return 0;
+        } else
+        {
+            return n*n + SumSquaresRecursive(n - 1);
+        }
+
     }
 
     /// <summary>
@@ -176,6 +178,14 @@ public static class RecursionTester {
     /// </summary>
     public static void PermutationsChoose(string letters, int size, string word = "") {
         // TODO Start Problem 2
+
+        if (word.Length == size)
+        {
+            Console.WriteLine(word);
+            return;
+        } else {
+            Console.WriteLine("The word length is different from the desired size");
+        }
     }
 
     /// <summary>
