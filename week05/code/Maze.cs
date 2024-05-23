@@ -62,7 +62,7 @@ public class Maze {
         if (y > Height || y < 0)
             return false;
         // Can't go through a wall
-        if (Data[y * Height + x] == 0)
+        if (Data[y * Width + x] == 0)
             return false;
         // Can't go if we have already been there (don't go in circles)
         if (currPath.Contains((x, y)))
