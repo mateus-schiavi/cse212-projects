@@ -342,6 +342,6 @@ public static class RecursionTester
             }
         }
         currPath.RemoveAt(currPath.Count - 1);
-        Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+        //Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
     }
 }
