@@ -333,10 +333,10 @@ public static class RecursionTester
 
         maze.Data[y * maze.Height + x] = 0;
 
-        SolveMaze(maze, x + 1, y, currPath);
-        SolveMaze(maze, x - 1, y, currPath);
-        SolveMaze(maze, x, 1 + y, currPath);
-        SolveMaze(maze, x, y - 1, currPath);
+        SolveMaze(maze, x + 1, y, new List<(int, int)>(currPath)); // Move right
+        SolveMaze(maze, x - 1, y, new List<(int, int)>(currPath)); // Move left
+        SolveMaze(maze, x, y + 1, new List<(int, int)>(currPath)); // Move down
+        SolveMaze(maze, x, y - 1, new List<(int, int)>(currPath)); // Move up
 
         maze.Data[y * maze.Height + x] = 1;
 
