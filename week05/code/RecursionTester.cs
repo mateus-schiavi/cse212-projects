@@ -310,38 +310,46 @@ public static class RecursionTester
     /// Use recursion to Print all paths that start at (0,0) and end at the
     /// 'end' square.
     /// </summary>
-    public static void SolveMaze(Maze maze, int x = 0, int y = 0, List<ValueTuple<int, int>>? currPath = null)
+    public static void SolveMaze(Maze maze, int x = 0, int y = 0, List<(int, int)>? currPath = null)
     {
         // If this is the first time running the function, then we need
         // to initialize the currPath list.
         if (currPath == null)
-            currPath = new List<ValueTuple<int, int>>();
+            currPath = new List<(int, int)>();
         currPath.Add((x, y)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
         // ADD CODE HERE
 
+        // Check if the current position is the end of the maze
         if (maze.IsEnd(x, y))
         {
-            Console.WriteLine(string.Join("->", currPath.Select(p => $"({p.Item1}, {p.Item2})")));
+            // If it is, print the current path
+            PrintPath(currPath);
+            return;
         }
-        else
+
+        // Define the possible moves: up, down, left, right
+        int[] dx = { 0, 0, -1, 1 };
+        int[] dy = { -1, 1, 0, 0 };
+
+        // Iterate over all possible moves
+        for (int i = 0; i < 4; i++)
         {
-            List<(int, int)> moves = new() { (-1, 0), (1, 0), (0, -1), (0, 1) };
+            int newX = x + dx[i];
+            int newY = y + dy[i];
 
-
-            foreach (var move in moves)
+            // Check if the new position is a valid move
+            if (maze.IsValidMove(currPath, newX, newY))
             {
-                int newX = x + move.Item1;
-                int newY = y + move.Item2;
-
-                if (maze.IsValidMove(currPath,newX, newY))
-                {
-                    SolveMaze(maze, newX, newY, currPath);
-                }
+                // Recursively call SolveMaze with the new position
+                SolveMaze(maze, newX, newY, new List<(int, int)>(currPath));
             }
         }
-        currPath.RemoveAt(currPath.Count - 1);
-        //Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+    }
+
+    public static void PrintPath(List<(int, int)> path)
+    {
+        Console.WriteLine("<List>{" + string.Join(", ", path) + "}");
     }
 }
