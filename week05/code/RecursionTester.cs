@@ -345,11 +345,9 @@ public static class RecursionTester
 
     public static void ExploreMove(Maze maze, List<ValueTuple<int, int>> currPath, int newX, int newY)
     {
-        if (newX >= 0 && newX < maze.Width && newY >= 0 && newY < maze.Height
-            && maze.Data[newY * maze.Width + newX] == 1)
+        if (maze.IsValidMove(currPath, newX, newY))
         {
-            List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
-            SolveMaze(maze, newX, newY, newPath);
+            SolveMaze(maze, newX, newY, currPath);
         }
     }
 
