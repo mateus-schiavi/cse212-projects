@@ -183,8 +183,14 @@ public static class RecursionTester {
         {
             Console.WriteLine(word);
             return;
-        } else {
-            Console.WriteLine("The word length is different from the desired size");
+        } 
+        for (int i = 0; i < letters.Length; i++)
+        {
+            string newWord = word + letters[i];
+
+            string remainingLetters = letters.Remove(i, 1);
+
+            PermutationsChoose(remainingLetters, size, newWord);
         }
     }
 
