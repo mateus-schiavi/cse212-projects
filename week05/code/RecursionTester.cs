@@ -340,6 +340,16 @@ public static class RecursionTester
         Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
     }
 
+    public static void ExploreMove(Maze maze, List<ValueTuple<int, int>> currPath, int newX, int newY)
+    {
+        if (newX >= 0 && newX < maze.Width && newY >=0 && newY < maze.Height
+            && maze.Data[newY * maze.Width + newX] == 1)
+        {
+            List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+            SolveMaze(maze, newX, newY, newPath);
+        }
+    }
+
     private static void PrintPath(List<ValueTuple<int, int>> path)
     {
         Console.Write("Path: ");       
@@ -349,15 +359,5 @@ public static class RecursionTester
         }
 
         Console.WriteLine("\nEnd of the Path\n");
-    }
-
-    public static void ExploreMove(Maze maze, List<ValueTuple<int, int>> currPath, int newX, int newY)
-    {
-        if (newX >= 0 && newX < maze.Width && newY >=0 && newY < maze.Height
-            && maze.Data[newY * maze.Width + newX] == 1)
-        {
-            List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
-            SolveMaze(maze, newX, newY, newPath);
-        }
     }
 }
