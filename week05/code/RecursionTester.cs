@@ -373,6 +373,8 @@ public static class RecursionTester
         // Backtrack: Reset the current position and maze data
         maze.Data[y * maze.Width + x] = 1;
         currPath.RemoveAt(currPath.Count - 1);
+
+        Console.WriteLine(currPath.AsString());
     }
 
 
