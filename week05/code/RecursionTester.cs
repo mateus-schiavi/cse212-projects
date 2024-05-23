@@ -305,6 +305,7 @@ public static class RecursionTester
             BinaryCardHelper(pattern.Substring(1), current + pattern[0]);
          }
     }
+
     /// <summary>
     /// Use recursion to Print all paths that start at (0,0) and end at the
     /// 'end' square.
@@ -316,11 +317,47 @@ public static class RecursionTester
         if (currPath == null)
             currPath = new List<ValueTuple<int, int>>();
 
-        // currPath.Add((1,2)); // Use this syntax to add to the current path
+        currPath.Add((x,y)); // Use this syntax to add to the current path
 
         // TODO Start Problem 5
         // ADD CODE HERE
 
+        if (maze.IsEnd(x, y))
+        {
+            PrintPath(currPath);
+            return;
+        }
+
+        maze.Data[y * maze.Width + x] = 0;
+
+        ExploreMove(maze, currPath, x + 1, y);
+        ExploreMove(maze, currPath, x - 1, y);
+        ExploreMove(maze, currPath, x, 1 + y);
+        ExploreMove(maze, currPath, x, y - 1);
+
+        maze.Data[y * maze.Width + x] = 1;
+
         // Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
+    }
+
+    private static void PrintPath(List<ValueTuple<int, int>> path)
+    {
+        Console.Write("Path: ");       
+        foreach (var point in path)
+        {
+            Console.WriteLine($"({point.Item1}, {point.Item2}) ");
+        }
+
+        Console.WriteLine("\nEnd of the Path\n");
+    }
+
+    public static void ExploreMove(Maze maze, List<ValueTuple<int, int>> currPath, int newX, int newY)
+    {
+        if (newX >= 0 && newX < maze.Width && newY >=0 && newY < maze.Height
+            && maze.Data[newY * maze.Width + newX] == 1)
+        {
+            List<ValueTuple<int, int>> newPath = new List<ValueTuple<int, int>>(currPath);
+            SolveMaze(maze, newX, newY, newPath);
+        }
     }
 }
