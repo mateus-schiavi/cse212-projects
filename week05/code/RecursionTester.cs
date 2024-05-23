@@ -331,14 +331,14 @@ public static class RecursionTester
             return;
         }
 
-        maze.Data[y * maze.Width + x] = 0;
+        maze.Data[y * maze.Height + x] = 0;
 
         SolveMaze(maze, x + 1, y, currPath);
         SolveMaze(maze, x - 1, y, currPath);
         SolveMaze(maze, x, 1 + y, currPath);
         SolveMaze(maze, x, y - 1, currPath);
 
-        maze.Data[y * maze.Width + x] = 1;
+        maze.Data[y * maze.Height + x] = 1;
 
         Console.WriteLine(currPath.AsString()); // Use this to print out your path when you find the solution
     }
