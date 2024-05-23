@@ -335,7 +335,7 @@ public static class RecursionTester
                 int newX = x + move.Item1;
                 int newY = y + move.Item2;
 
-                if (maze.IsValidMove(currPath, newX, newY))
+                if (maze.IsValidMove(currPath,newX, newY))
                 {
                     SolveMaze(maze, newX, newY, currPath);
                 }
