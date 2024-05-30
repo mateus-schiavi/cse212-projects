@@ -26,7 +26,12 @@ public class Node {
 
     public bool Contains(int value) {
         // TODO Start Problem 2
-        return false;
+        if (value == Data)
+            return true;
+        else if (value < Data)
+            return Left?.Contains(value) ?? false;
+        else
+            return Right?.Contains(value) ?? false;
     }
 
     public int GetHeight() {
