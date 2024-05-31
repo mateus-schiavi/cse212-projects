@@ -36,6 +36,8 @@ public class Node {
 
     public int GetHeight() {
         // TODO Start Problem 4
-        return 0; // Replace this line with the correct return statement(s)
+        int leftHeight = Left?.GetHeight() ?? - 1;
+        int rightHeight = Right?.GetHeight() ?? - 1;
+        return 1 + Math.Max(leftHeight, rightHeight);
     }
 }
